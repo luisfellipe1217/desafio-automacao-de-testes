@@ -19,6 +19,7 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 //import org.mockito.Mock;
 //import org.mockito.Mockito;
 import org.openqa.selenium.By;
@@ -47,9 +48,13 @@ public class TesteQaApplicationTests {
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 	// Instanciando as classes a serem testadas.
+	@Mock
 	UsuarioForm usuF;
+	@Mock
 	UsuarioController usuControl;
+	@Mock
 	UsuarioView usuV;
+	@Mock
 	UsuarioRepository usuRepo;
 	
 	//instanciando usuario para teste
@@ -192,7 +197,7 @@ public class TesteQaApplicationTests {
 		usuList.add(user());
 		
 		//Verificação de cadastro
-		assertEquals(usuList, usuRepo);		
+		assertEquals(usuList, usuRepo);			
 
 	}
 
@@ -214,8 +219,8 @@ public class TesteQaApplicationTests {
 	//******** Teste de exclusão ************
 	public void cT04TestDelete() {
 		// Test name: CT03TestDelete
-		// Step # | name | target | value
 		
+		double count = usuRepo.count();		
 		// Clica no campo nome da pesquisa
 		driver.findElement(By.id("input-search")).click();
 		driver.findElement(By.id("input-search")).sendKeys("Luis Fellipe Raimundo dos Santos");		
@@ -225,8 +230,8 @@ public class TesteQaApplicationTests {
 		// clica no botão excluir;
 		driver.findElement(By.cssSelector(".btn-danger")).click();
 		
-		assertThat(usuRepo.count(), is (0));	
-		
+		// ****Verificação****
+		assertThat(usuRepo.count(), is (count-1));			
 
 	}
 
