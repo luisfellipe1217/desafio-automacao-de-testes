@@ -24,8 +24,8 @@ public class UsuarioView {
         this.dataNascimento = usuario.getDataNascimento() != null ? usuario.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
     }
 
-    public static List<UsuarioView> toView(List<Usuario> usuarios) {
-        return usuarios.stream().map(UsuarioView::new).collect(Collectors.toList());
+    public static List<UsuarioView> toView(Usuario usu) {
+        return usu.stream().map(UsuarioView::new).collect(Collectors.toList());
     }
 
 }
